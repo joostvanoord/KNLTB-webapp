@@ -1,0 +1,14 @@
+services:
+- type:web
+  name:knltb-checker
+  env:node
+  plan:starter
+  buildCommand:npm install
+  startCommand:npm start
+  disk:
+    name:data
+    mountPath:/data
+    sizeGB:1
+  envVars:
+  - key:STATE_PATH
+    value:/data/state.json
