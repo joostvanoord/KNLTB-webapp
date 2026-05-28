@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.get("/api/data",async(req,res)=>{
  try{
   let{b,p}=await page();
-  await p.goto(url,{waitUntil:"networkidle"});
+  await p.goto(url,{waitUntil:"domcontentloaded",timeout:60000});
   let title=await p.title(),text=(await p.textContent("body")||"").trim();
   await b.close();
   res.json({ok:true,title,text:text.slice(0,5000)});
